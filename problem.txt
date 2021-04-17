@@ -21,7 +21,7 @@ Input:
 constraints:
              N the size of vector of vector
              and M size of vectors
-             N,m <100
+             1<=N,M <100
    
 
 input: [[1],[2],[3],[]]
