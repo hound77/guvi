@@ -16,6 +16,12 @@ Return true if and only if you can enter every boxes.
 
 Input:
        A vector of vector.
+
+
+constraints:
+             N the size of vector of vector
+             and M size of vectors
+             N,m <100
    
 
 input: [[1],[2],[3],[]]
@@ -40,7 +46,8 @@ We can't enter the box with number 2.
 Test Case:
 
 
-Input: [[1],[],[0,3],[1]]
+Input: 
+[[1],[],[0,3],[1]]
 
 output: false
 
@@ -65,6 +72,14 @@ output: true
 
 
 solution:
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    vector<vector<int>>v;
+    
+}
 
  void dfs(int start,vector<vector<int>>& boxes,vector<bool> &vis){
         vis[start]=true;
