@@ -14,7 +14,9 @@ You can walk back and forth between boxes freely.
 
 Return true if and only if you can enter every boxes.
 
-
+Input:
+       A vector of vector.
+   
 
 input: [[1],[2],[3],[]]
 
