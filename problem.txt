@@ -24,7 +24,11 @@ constraints:
              1<=N,M <100
    
 
-input: [[1],[2],[3],[]]
+input: 4 3
+0 1
+1 2
+2 3
+
 
 output: true
 
@@ -35,7 +39,15 @@ We then go to box 2, and pick up key 3.
 We then go to box 3.  Since we were able to go to every box, we return true.
 
 
-Input: [[1,3],[3,0,1],[2],[0]]
+Input:
+4 7
+0 1
+0 3
+1 3
+1 0
+1 1
+2 2
+3 0 
 Output: false
 Explanation: 
 We can't enter the box with number 2.
@@ -47,26 +59,54 @@ Test Case:
 
 
 Input: 
+4 4
+0 1
+2 0
+2 3
+3 1
 
-[[1],[],[0,3],[1]]
 
 output: false
 
 
-Input: [[1,3],[0,2],[2],[4],[1]]
+Input: 
+5 7
+0 1
+0 3
+1 0
+1 2
+2 2
+3 4 
+4 1
+
 
 output: true
 
-Input: [[1,4],[],[3,0,4],[2],[]]
+Input: 
+5 6
+0 1
+0 4
+2 3
+2 0
+2 4
+3 2
+
 
 output: false
 
 
-Input: [[]]
+Input:
+0 0 
 
 output: true
 
-Input: [[1,2,3,4],[],[],[],[]]
+Input:
+5 4
+0 1
+0 2
+0 3
+0 4
+
 
 output: true
 
@@ -75,40 +115,39 @@ output: true
 solution:
 #include<bits/stdc++.h>
 using namespace std;
-
+const int N=100000;
+vector<int>v[N];
+void dfs(int start,vector<bool> &vis);
+bool canVisitAllboxes(int n);
 int main()
 {
-    vector<vector<int>>v;
     int n,m;
     cin>>n>>m;
-    for(int i=0;i<n;i++)
+    while(m--)
     {
-        for(int j=0;j<m;j++)
-        {
-            cin>>v[i][j];
-        }
+        int u,d;
+        cin>>u>>d;
+        v[u].push_back(d);
     }
-    if(canVisitAllboxes(boxes)==true)
+    if(canVisitAllboxes(n)==true)
     cout<<"true"<<endl;
     else
     cout<<"false"<<endl;
     
 }
 
- void dfs(int start,vector<vector<int>>& boxes,vector<bool> &vis){
+ void dfs(int start,vector<bool> &vis){
         vis[start]=true;
-        
-        for(auto x : boxes[start]){
+        for(auto x : v[start]){
             if(!vis[x]){
-                dfs(x,boxes,vis);
+                dfs(x,vis);
             }
         }
     }
     
-    bool canVisitAllboxes(vector<vector<int>>& boxes) {
-        int n = boxes.size();
+    bool canVisitAllboxes(int n) {
         vector<bool> vis(n,false);
-        dfs(0,boxes,vis);
+        dfs(0,vis);
         for(auto x : vis){
             if(!x) return false;
         }
